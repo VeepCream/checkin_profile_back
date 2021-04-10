@@ -22,7 +22,7 @@ class AqueducttestChannel extends ApplicationChannel {
 
     final dataModel = ManagedDataModel.fromCurrentMirrorSystem();
     final persistentStore = PostgreSQLPersistentStore.fromConnectionInfo(
-        "postgres", "vee123456", "localhost", 5432, "checkin_profile");
+        "postgres", "vee123456", "db", 5432, "checkin_profile");
 
     context = ManagedContext(dataModel, persistentStore);
   }
