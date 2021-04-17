@@ -6,7 +6,7 @@ GRANT all ON database checkin_profile TO dartuser;
 \connect checkin_profile
 
 
-CREATE TABLE IF NOT EXISTS CheckHistoryTable (
+CREATE TABLE CheckHistoryTable (
     id SERIAL PRIMARY KEY,
 
     datetime TIMESTAMP,
