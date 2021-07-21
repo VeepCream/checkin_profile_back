@@ -1,13 +1,19 @@
 import 'aqueducttest.dart';
+import 'package:conduit/managed_auth.dart';
 import 'controllers/CheckController.dart';
 import 'controllers/CheckListController.dart';
+import 'controllers/Register_controller.dart';
+
+import 'models/User.dart';
 
 /// This type initializes an application.
 ///
 /// Override methods in this class to set up routes and initialize services like
 /// database connections. See http://aqueduct.io/docs/http/channel/.
 class AqueducttestChannel extends ApplicationChannel {
-  ManagedContext context;
+  late ManagedContext context;
+
+  late AuthServer authServer;
 
   /// Initialize services in this method.
   ///
@@ -22,9 +28,13 @@ class AqueducttestChannel extends ApplicationChannel {
 
     final dataModel = ManagedDataModel.fromCurrentMirrorSystem();
     final persistentStore = PostgreSQLPersistentStore.fromConnectionInfo(
-        "postgres", "vee123456", "db", 5432, "checkin_profile");
+        "postgres", "vee123456", "127.0.0.1", 65432, "checkin_profile");
 
     context = ManagedContext(dataModel, persistentStore);
+
+    final delegate = ManagedAuthDelegate<User>(context);
+    authServer = AuthServer(delegate);
+
   }
 
   /// Construct the request channel.
@@ -46,6 +56,12 @@ class AqueducttestChannel extends ApplicationChannel {
     router
         .route("/checkList/[:userId]")
         .link(() => CheckListController(context));
+
+    router.route('/auth/token').link(() => AuthController(authServer));
+
+    router
+        .route('/register')
+        .link(() => RegisterController(context, authServer));
 
     return router;
   }

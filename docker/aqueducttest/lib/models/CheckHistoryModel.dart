@@ -8,12 +8,12 @@ class CheckHistoryModel extends ManagedObject<_CheckHistoryModel>
 @Table(name: "CheckHistoryTable")
 class _CheckHistoryModel {
   @Column(primaryKey: true)
-  int id;
+  late int id;
 
   @Column(indexed: true)
-  DateTime dateTime;
-  String userId;
-  String image;
-  Document location;
-  StatusCheck statusCheck;
+  late DateTime dateTime;
+  late String userId;
+  late String image;
+  late Document location;
+  late StatusCheck statusCheck;
 }

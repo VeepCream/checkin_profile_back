@@ -1,14 +1,14 @@
 import 'package:aqueducttest/aqueducttest.dart';
-import 'package:aqueduct_test/aqueduct_test.dart';
+import 'package:conduit_test/conduit_test.dart';
 
 export 'package:aqueducttest/aqueducttest.dart';
-export 'package:aqueduct_test/aqueduct_test.dart';
+export 'package:conduit_test/conduit_test.dart';
 export 'package:test/test.dart';
-export 'package:aqueduct/aqueduct.dart';
+export 'package:conduit/conduit.dart';
 
 /// A testing harness for aqueducttest.
 ///
-/// A harness for testing an aqueduct application. Example test file:
+/// A harness for testing an conduit application. Example test file:
 ///
 ///         void main() {
 ///           Harness harness = Harness()..install();
@@ -21,12 +21,8 @@ export 'package:aqueduct/aqueduct.dart';
 ///
 class Harness extends TestHarness<AqueducttestChannel> {
   @override
-  Future onSetUp() async {
-
-  }
+  Future onSetUp() async {}
 
   @override
-  Future onTearDown() async {
-
-  }
+  Future onTearDown() async {}
 }
